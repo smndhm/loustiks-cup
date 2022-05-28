@@ -15,21 +15,19 @@ data.forEach((row) => {
 </script>
 
 <template>
-  <section class="section content container">
-    <h2 class="is-uppercase">{{ $route.params.category }}</h2>
-    <div class="tabs is-large">
-      <ul>
-        <li
-          v-for="(poule, key) in poules"
-          :class="{ 'is-active': paramCase(key) === $route.params.tab }"
-          :key="key"
+  <h2 class="is-uppercase">{{ $route.params.category }}</h2>
+  <div class="tabs is-large">
+    <ul>
+      <li
+        v-for="(poule, key) in poules"
+        :class="{ 'is-active': paramCase(key) === $route.params.tab }"
+        :key="key"
+      >
+        <router-link
+          :to="`/categories/${$route.params.category}/tabs/${paramCase(key)}`"
+          >{{ key }}</router-link
         >
-          <router-link
-            :to="`/categories/${$route.params.category}/tabs/${paramCase(key)}`"
-            >{{ key }}</router-link
-          >
-        </li>
-      </ul>
-    </div>
-  </section>
+      </li>
+    </ul>
+  </div>
 </template>

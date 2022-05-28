@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 const isActiveBurger = ref(false);
-// import HelloWorld from "@/components/HelloWorld.vue";
 </script>
 
 <template>
@@ -24,38 +23,39 @@ const isActiveBurger = ref(false);
         </div>
       </div>
 
-      <div
-        id="navbarExampleTransparentExample"
-        class="navbar-menu"
-        :class="{ 'is-active': isActiveBurger }"
-      >
+      <div class="navbar-menu" :class="{ 'is-active': isActiveBurger }">
         <div class="navbar-start">
-          <div class="navbar-item has-dropdown is-hoverable">
+          <!-- <div class="navbar-item has-dropdown is-hoverable">
             <RouterLink class="navbar-link" to="/categories">
               Catégories
             </RouterLink>
             <div class="navbar-dropdown is-boxed">
-              <RouterLink class="navbar-item" to="/categories/u11">
-                U11
-              </RouterLink>
-              <RouterLink class="navbar-item" to="/categories/u13">
-                U13
+              <RouterLink
+                v-for="(categorie, index) in $categories"
+                :key="index"
+                class="navbar-item"
+                :to="`/categories/${categorie}`"
+              >
+                {{ categorie }}
               </RouterLink>
             </div>
-          </div>
+          </div> -->
+          <RouterLink class="navbar-item" to="/matchs">Matchs</RouterLink>
         </div>
 
         <div class="navbar-end">
-          <div class="navbar-item">
-            <RouterLink class="navbar-item" to="/reglement">
-              Règlement
-            </RouterLink>
-          </div>
+          <RouterLink class="navbar-item" to="/reglement">
+            Règlement
+          </RouterLink>
         </div>
       </div>
     </nav>
   </header>
-  <Suspense>
-    <RouterView />
-  </Suspense>
+  <main>
+    <section class="section content container">
+      <Suspense>
+        <RouterView />
+      </Suspense>
+    </section>
+  </main>
 </template>

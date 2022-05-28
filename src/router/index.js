@@ -29,6 +29,11 @@ const router = createRouter({
       name: "reglement",
       component: () => import("../views/ReglementView.vue"),
     },
+    {
+      path: "/matchs",
+      name: "matchs",
+      component: () => import("../views/MatchsView.vue"),
+    },
   ],
 });
 
