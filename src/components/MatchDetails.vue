@@ -31,7 +31,7 @@ const props = defineProps({
           <div>
             <span class="icon-text">
               <span class="icon">
-                <img src="terrain.svg" alt="Terrain" />
+                <img src="/terrain.svg" alt="Terrain" />
               </span>
               <span>{{ props.match.terrain }}</span>
             </span>
@@ -40,7 +40,7 @@ const props = defineProps({
             <div>
               <span class="icon-text">
                 <span class="icon is-small">
-                  <img src="arbitre.svg" alt="Arbitre" />
+                  <img src="/arbitre.svg" alt="Arbitre" />
                 </span>
                 <span>{{ props.match.arbitre }}</span>
               </span>
