@@ -1,4 +1,5 @@
 <script setup>
+import MatchDetails from "../components/MatchDetails.vue";
 import { reactive } from "vue";
 //Get data
 const data = await fetch(`http://164.132.51.82:8080/tabs/Matchs`).then((r) =>
@@ -23,7 +24,7 @@ const setMatch = (
     arbitre,
   ]
 ) => {
-  if (equipeExterieure) {
+  if (equipeDomicile && equipeExterieure) {
     return {
       heure,
       terrain,
@@ -61,20 +62,14 @@ for (let i = 2; i < data.length; i++) {
 
 <template>
   <h2>Matchs</h2>
-  <div v-for="heure in heures" class="columns is-vcentered" :key="heure.heure">
-    <div class="column is-narrow">
+  <template v-for="heure in heures" :key="heure.heure">
+    <h3>
       {{ heure.heure }}
-    </div>
-    <div
-      class="card column"
-      v-for="(match, index) in heure.matchs"
-      :key="index"
-    >
-      <div class="card-content">
-        <div class="content">
-          <pre>{{ match }}</pre>
-        </div>
+    </h3>
+    <div class="columns">
+      <div class="column" v-for="(match, index) in heure.matchs" :key="index">
+        <match-details :match="match" />
       </div>
     </div>
-  </div>
+  </template>
 </template>
