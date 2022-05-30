@@ -52,7 +52,7 @@ for (let i = 2; i < data.length; i++) {
   const match1 = setMatch(heure, terrain1, data[i].slice(0, 9));
   const match2 = setMatch(heure, terrain2, data[i].slice(8));
 
-  if (match1 && match2)
+  if (match1 || match2)
     heures.push({
       heure,
       matchs: [match1, match2],
@@ -68,7 +68,7 @@ for (let i = 2; i < data.length; i++) {
     </h3>
     <div class="columns">
       <div class="column" v-for="(match, index) in heure.matchs" :key="index">
-        <match-details :match="match" />
+        <match-details v-if="match" :match="match" />
       </div>
     </div>
   </template>
