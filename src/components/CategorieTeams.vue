@@ -18,16 +18,20 @@ equipes.sort();
 </script>
 
 <template>
-  <div class="box">
-    <h3>
-      <router-link :to="`/categories/${paramCase(props.categorie)}`">
-        {{ props.categorie }} - {{ equipes.length }} équipes
-      </router-link>
-    </h3>
-    <ul>
-      <li v-for="(equipe, index) in equipes" :key="index">
-        {{ equipe }}
-      </li>
-    </ul>
+  <div class="card">
+    <div class="card-content">
+      <div class="content">
+        <h3>
+          <router-link :to="`/categories/${paramCase(props.categorie)}`">
+            {{ props.categorie }} - {{ equipes.length }} équipes
+          </router-link>
+        </h3>
+        <ul>
+          <li v-for="(equipe, index) in equipes" :key="index">
+            {{ equipe }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>

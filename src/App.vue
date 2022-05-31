@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import { paramCase } from "param-case";
 import { RouterLink, RouterView } from "vue-router";
 const isActiveBurger = ref(false);
 </script>
@@ -25,7 +26,7 @@ const isActiveBurger = ref(false);
 
       <div class="navbar-menu" :class="{ 'is-active': isActiveBurger }">
         <div class="navbar-start">
-          <!-- <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-item has-dropdown is-hoverable">
             <RouterLink class="navbar-link" to="/categories">
               Catégories
             </RouterLink>
@@ -34,12 +35,12 @@ const isActiveBurger = ref(false);
                 v-for="(categorie, index) in $categories"
                 :key="index"
                 class="navbar-item"
-                :to="`/categories/${categorie}`"
+                :to="`/categories/${paramCase(categorie)}`"
               >
                 {{ categorie }}
               </RouterLink>
             </div>
-          </div> -->
+          </div>
           <RouterLink class="navbar-item" to="/matchs">Matchs</RouterLink>
         </div>
 
