@@ -28,7 +28,13 @@ equipes.sort();
         </h3>
         <ul>
           <li v-for="(equipe, index) in equipes" :key="index">
-            {{ equipe }}
+            <router-link
+              :to="`/categories/${paramCase(
+                props.categorie
+              )}/equipes/${paramCase(equipe)}`"
+            >
+              {{ equipe }}
+            </router-link>
           </li>
         </ul>
       </div>

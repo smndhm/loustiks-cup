@@ -93,7 +93,15 @@ poulesTable.sort((a, b) => {
       <tbody>
         <tr v-for="(pouleTable, index) in poulesTable" :key="index">
           <th>{{ index + 1 }}</th>
-          <td>{{ pouleTable.team }}</td>
+          <td class="nowrap">
+            <router-link
+              :to="`/categories/${paramCase(
+                props.categorie
+              )}/equipes/${paramCase(pouleTable.team)}`"
+            >
+              {{ pouleTable.team }}
+            </router-link>
+          </td>
           <td>{{ pouleTable.played }}</td>
           <td>{{ pouleTable.won }}</td>
           <td>{{ pouleTable.tied }}</td>
@@ -109,3 +117,9 @@ poulesTable.sort((a, b) => {
     </table>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.nowrap {
+  white-space: nowrap;
+}
+</style>

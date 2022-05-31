@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, watch, computed } from "vue";
-import { paramCase } from "param-case";
 import { useRoute } from "vue-router";
+import { paramCase } from "param-case";
 import PouleClassement from "../components/PouleClassement.vue";
 import { getAllMatchs } from "../services/sheets.service";
 
@@ -41,6 +41,7 @@ watch(
 
 <template>
   <h2 class="is-uppercase">{{ route.params.category }}</h2>
+  <h3>Poules</h3>
   <div class="tabs">
     <ul>
       <li
@@ -51,7 +52,7 @@ watch(
         :key="key"
       >
         <router-link
-          :to="`/categories/${route.params.category}/tabs/${paramCase(key)}`"
+          :to="`/categories/${route.params.category}/poules/${paramCase(key)}`"
           >{{ key }}</router-link
         >
       </li>
