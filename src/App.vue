@@ -10,7 +10,12 @@ const isActiveBurger = ref(false);
     <nav class="navbar is-transparent">
       <div class="navbar-brand">
         <h1 class="navbar-item">
-          <RouterLink to="/">Loustiks Cup</RouterLink>
+          <RouterLink to="/"
+            ><figure class="image is-48x48">
+              <img src="/logo-stl.svg" alt="" />
+            </figure>
+            Loustiks Cup</RouterLink
+          >
         </h1>
         <div
           class="navbar-burger"
@@ -60,3 +65,14 @@ const isActiveBurger = ref(false);
     </section>
   </main>
 </template>
+
+<style lang="scss" scoped>
+.image {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navbar-item img {
+  max-height: none;
+}
+</style>

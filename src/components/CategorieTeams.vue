@@ -26,17 +26,22 @@ equipes.sort();
             {{ props.categorie }} - {{ equipes.length }} équipes
           </router-link>
         </h3>
-        <ul>
-          <li v-for="(equipe, index) in equipes" :key="index">
-            <router-link
-              :to="`/categories/${paramCase(
-                props.categorie
-              )}/equipes/${paramCase(equipe)}`"
-            >
-              {{ equipe }}
-            </router-link>
-          </li>
-        </ul>
+        <div v-for="(equipe, index) in equipes" :key="index">
+          <router-link
+            class="button is-link is-inverted"
+            :to="`/categories/${paramCase(props.categorie)}/equipes/${paramCase(
+              equipe
+            )}`"
+          >
+            {{ equipe }}
+          </router-link>
+        </div>
+        <router-link
+          class="button is-info is-light"
+          :to="`/categories/${paramCase(props.categorie)}`"
+        >
+          Voir le classement des poules
+        </router-link>
       </div>
     </div>
   </div>
