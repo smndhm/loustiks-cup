@@ -22,6 +22,7 @@ const isActiveBurger = ref(false);
           :class="{ 'is-active': isActiveBurger }"
           data-target="navbarExampleTransparentExample"
           @click="isActiveBurger = !isActiveBurger"
+          @keydown="isActiveBurger = !isActiveBurger"
         >
           <span></span>
           <span></span>

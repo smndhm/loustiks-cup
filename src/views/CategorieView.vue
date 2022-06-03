@@ -3,7 +3,7 @@ import { reactive, watch, computed } from "vue";
 import { useRoute } from "vue-router";
 import { paramCase } from "param-case";
 import PouleClassement from "../components/PouleClassement.vue";
-import { getAllMatchs } from "../services/sheets.service";
+import { getAllMatchs, getEquipes } from "../services/sheets.service";
 
 const route = useRoute();
 const poules = reactive({});
@@ -13,9 +13,7 @@ const setPoules = async (category) => {
   // Empty poules
   Object.keys(poules).forEach((key) => delete poules[key]);
   // Set poules
-  const data = await fetch(
-    `http://164.132.51.82:8080/tabs/${category}%20-%20Poules`
-  ).then((r) => r.json());
+  const data = await getEquipes(category);
   // Set key
   for (let column = 0; column < data[0].length; column++) {
     poules[data[0][column]] = [];

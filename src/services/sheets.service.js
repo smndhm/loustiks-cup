@@ -1,18 +1,46 @@
+// Backend URL
 const backendUrl = "http://164.132.51.82:8080/tabs";
 
 /**
+ * Fetch data
  *
- * @returns
+ * @param {string} tabName name of the tab we want to get the data from
+ * @returns {Promise} Promise with the data
  */
-export const getMatchsTab = () =>
-  fetch(`${backendUrl}/Matchs`).then((r) => r.json());
+const getSheetsData = (tabName) =>
+  fetch(`${backendUrl}/${tabName}`).then((r) => r.json());
 
 /**
+ *Get Match tab data
  *
- * @param {*} heure
- * @param {*} terrain
- * @param {*} param2
- * @returns
+ * @returns {Promise} Promise with the data
+ */
+export const getMatchsTab = () => getSheetsData("Matchs");
+
+/**
+ * Get Poules tab data
+ *
+ * @param {string} categorie categorie of the poules we want to get the data from
+ * @returns {Promise} Promise with the data
+ */
+export const getEquipes = (categorie) =>
+  getSheetsData(`${categorie}%20-%20Poules`);
+
+/**
+ * Create match object
+ *
+ * @param {string} heure hour of the match
+ * @param {string} terrain field of the match
+ * @param {Array} match match data
+ * @param {string} match."0" name of the home team
+ * @param {string} match."1" name of the away team
+ * @param {string} match."2" score of the home team
+ * @param {string} match."3" score of the away team
+ * @param {string} match."4" match category
+ * @param {string} match."5" match phase
+ * @param {string} match."6" match competition
+ * @param {string} match."7" match referee
+ * @returns {object} match object
  */
 export const createMatch = (
   heure,
@@ -48,6 +76,11 @@ export const createMatch = (
   } else return;
 };
 
+/**
+ * Get all the matches
+ *
+ * @returns {Array} Array of match objects
+ */
 export const getAllMatchs = async () => {
   const allMatchs = [];
 
@@ -68,8 +101,9 @@ export const getAllMatchs = async () => {
 };
 
 /**
+ * Get Matchs by hours
  *
- * @returns
+ * @returns {Array} Array of match objects by hours
  */
 export const getMatchsByHours = async () => {
   const hours = [];

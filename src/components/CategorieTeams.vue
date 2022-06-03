@@ -1,18 +1,14 @@
 <script setup>
-import { reactive } from "vue";
 import { paramCase } from "param-case";
+import { getEquipes } from "../services/sheets.service";
 // Props
 const props = defineProps({
   categorie: String,
 });
-//Get data
-const data = await fetch(
-  `http://164.132.51.82:8080/tabs/${props.categorie}%20-%20Poules`
-).then((r) => r.json());
-let equipes = reactive([]);
-// Format data
-for (let i = 1; i < data.length; i++) {
-  equipes = equipes.concat(data[i]);
+let equipes = [];
+let equipesData = await getEquipes(props.categorie);
+for (let i = 1; i < equipesData.length; i++) {
+  equipes = equipes.concat(equipesData[i]);
 }
 equipes.sort();
 </script>
