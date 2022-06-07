@@ -1,8 +1,8 @@
 <script setup>
-import { reactive, watch, computed } from "vue";
+import { reactive, watch } from "vue";
 import { useRoute } from "vue-router";
-import { paramCase } from "param-case";
 import PouleClassement from "../components/PouleClassement.vue";
+import CompetitionMatchs from "../components/CompetitionMatchs.vue";
 import { getAllMatchs, getEquipes } from "../services/sheets.service";
 
 const route = useRoute();
@@ -25,8 +25,6 @@ const setPoules = async (category) => {
 };
 setPoules(route.params.category);
 
-const activeTab = computed(() => route.params.tab ?? "poule-a");
-
 watch(
   () => route.params.category,
   async (newCategory) => {
@@ -40,30 +38,21 @@ watch(
 <template>
   <h2 class="is-uppercase">{{ route.params.category }}</h2>
   <h3>Poules</h3>
-  <div class="tabs">
-    <ul>
-      <li
-        v-for="(poule, key) in poules"
-        :class="{
-          'is-active': paramCase(key) === activeTab,
-        }"
-        :key="key"
-      >
-        <router-link
-          :to="`/categories/${route.params.category}/poules/${paramCase(key)}`"
-          >{{ key }}</router-link
-        >
-      </li>
-    </ul>
-  </div>
-  <div v-for="(poule, key) in poules" :key="key">
+  <template v-for="(poule, key) in poules" :key="key">
+    <h4>{{ key }}</h4>
     <poule-classement
-      v-if="paramCase(key) === activeTab"
       :poule="poule"
       :categorie="route.params.category"
       :matchs="matchs"
     />
-  </div>
+  </template>
+  <competition-matchs
+    v-for="(competition, key) in $competitions[route.params.category]"
+    :competition="competition"
+    :categorie="route.params.category"
+    :matchs="matchs"
+    :key="key"
+  />
 </template>
 
 <style lang="scss" scoped>

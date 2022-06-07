@@ -1,11 +1,25 @@
 <script setup>
+import { computed } from "vue";
 import { paramCase } from "param-case";
 // Props
 const props = defineProps({
   match: Object,
   withHour: Boolean,
   noCategory: Boolean,
+  noPhase: Boolean,
+  noCompetition: Boolean,
 });
+// Computed
+const isHomeWinner = computed(() =>
+  props.match.domicile.score > props.match.exterieur.score ||
+  props.match.domicile.tab > props.match.exterieur.tab
+    ? true
+    : props.match.domicile.score === props.match.exterieur.score &&
+      !props.match.domicile.tab &&
+      !props.match.exterieur.tab
+    ? null
+    : false
+);
 </script>
 
 <template>
@@ -18,6 +32,7 @@ const props = defineProps({
               :to="`/categories/${paramCase(
                 props.match.categorie
               )}/equipes/${paramCase(props.match.domicile.equipe)}`"
+              :class="{ 'is-underlined': isHomeWinner }"
             >
               {{ props.match.domicile.equipe }}
             </router-link>
@@ -28,7 +43,14 @@ const props = defineProps({
               "
             >
               <span class="mx-3">
-                {{ props.match.domicile.score }} -
+                {{ props.match.domicile.score }}
+                <span class="is-size-7 tab" v-if="props.match.domicile.tab"
+                  >({{ props.match.domicile.tab }})</span
+                >
+                -
+                <span class="is-size-7 tab" v-if="props.match.exterieur.tab"
+                  >({{ props.match.exterieur.tab }})</span
+                >
                 {{ props.match.exterieur.score }}
               </span>
             </template>
@@ -37,6 +59,7 @@ const props = defineProps({
               :to="`/categories/${paramCase(
                 props.match.categorie
               )}/equipes/${paramCase(props.match.exterieur.equipe)}`"
+              :class="{ 'is-underlined': isHomeWinner === false }"
             >
               {{ props.match.exterieur.equipe }}
             </router-link>
@@ -71,8 +94,18 @@ const props = defineProps({
               </span>
             </div>
           </template>
-          <div v-if="!props.noCategory">
-            <span class="tag is-info">{{ props.match.categorie }}</span>
+          <div class="tags">
+            <span class="tag is-info" v-if="!props.noCategory">{{
+              props.match.categorie
+            }}</span>
+            <span
+              class="tag is-info is-light"
+              v-if="!props.noCompetition && props.match.competition"
+              >{{ props.match.competition }}</span
+            >
+            <span class="tag is-info is-light" v-if="!props.noPhase">{{
+              props.match.phase.replace(/ *\([^)]*\) */g, "")
+            }}</span>
           </div>
         </div>
       </div>
@@ -83,5 +116,8 @@ const props = defineProps({
 <style lang="scss" scoped>
 .icon-text {
   align-items: center;
+}
+.tab {
+  vertical-align: middle;
 }
 </style>

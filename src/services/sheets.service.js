@@ -36,10 +36,12 @@ export const getEquipes = (categorie) =>
  * @param {string} match."1" name of the away team
  * @param {string} match."2" score of the home team
  * @param {string} match."3" score of the away team
- * @param {string} match."4" match category
- * @param {string} match."5" match phase
- * @param {string} match."6" match competition
- * @param {string} match."7" match referee
+ * @param {string} match."4" tab score of the home team
+ * @param {string} match."5" tab score of the away team
+ * @param {string} match."6" match category
+ * @param {string} match."7" match phase
+ * @param {string} match."8" match competition
+ * @param {string} match."9" match referee
  * @returns {object} match object
  */
 export const createMatch = (
@@ -50,6 +52,8 @@ export const createMatch = (
     equipeExterieure,
     scoreDomicile,
     scoreExterieur,
+    tabDomicile,
+    tabExterieur,
     categorie,
     phase,
     competition,
@@ -63,10 +67,12 @@ export const createMatch = (
       domicile: {
         equipe: equipeDomicile?.trim() ?? "",
         score: scoreDomicile === "" ? null : parseInt(scoreDomicile, 10),
+        tab: tabDomicile === "" ? null : parseInt(tabDomicile, 10),
       },
       exterieur: {
         equipe: equipeExterieure?.trim() ?? "",
         score: scoreExterieur === "" ? null : parseInt(scoreExterieur, 10),
+        tab: tabExterieur === "" ? null : parseInt(tabExterieur, 10),
       },
       categorie: categorie?.trim() ?? "",
       phase: phase?.trim() ?? "",
@@ -90,8 +96,8 @@ export const getAllMatchs = async () => {
 
   for (let i = 2; i < matchs.length; i++) {
     const heure = matchs[i].shift();
-    const match1 = createMatch(heure, terrain1, matchs[i].slice(0, 9));
-    const match2 = createMatch(heure, terrain2, matchs[i].slice(8));
+    const match1 = createMatch(heure, terrain1, matchs[i].slice(0, 11));
+    const match2 = createMatch(heure, terrain2, matchs[i].slice(10));
 
     if (match1) allMatchs.push(match1);
     if (match2) allMatchs.push(match2);
@@ -113,8 +119,8 @@ export const getMatchsByHours = async () => {
 
   for (let i = 2; i < matchs.length; i++) {
     const heure = matchs[i].shift();
-    const match1 = createMatch(heure, terrain1, matchs[i].slice(0, 9));
-    const match2 = createMatch(heure, terrain2, matchs[i].slice(8));
+    const match1 = createMatch(heure, terrain1, matchs[i].slice(0, 11));
+    const match2 = createMatch(heure, terrain2, matchs[i].slice(10));
 
     if (match1 || match2) {
       hours.push({

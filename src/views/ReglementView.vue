@@ -18,9 +18,9 @@
       <p>3/ Durée des matchs : 1 fois 9 minutes.</p>
       <p>4/ Le classement des poules s'effectuera comme suit :</p>
       <ul>
-        <li>match gagné : 4pts</li>
-        <li>match nul : 2 pts</li>
-        <li>match perdu : 1 pt</li>
+        <li>match gagné : 4 points</li>
+        <li>match nul : 2 points</li>
+        <li>match perdu : 1 point</li>
       </ul>
       <p>
         En cas d'ex-aequo dans les poules, les équipes seront départagées dans
@@ -36,8 +36,8 @@
         <dt>En U11 :</dt>
         <dd>
           Présence de 16 équipes réparties en 4 poules de 4.<br />
-          Les 2 premiers de chaque poule sont qualifiés pour la « ligue des
-          Champions U11», les 3ème et 4ème pour la « ligue Europa U11».<br />
+          Les 2 premiers de chaque poule sont qualifiés pour la « Ligue des
+          Champions U11», les 3ème et 4ème pour la « Ligue Europa U11».<br />
           Une phase éliminatoire (quarts de finale / demi-finales / finales et
           matches de classement) sera ensuite organisée.<br />
           Chaque équipe, gagnante ou perdante, jouera 6 matchs.
@@ -46,11 +46,11 @@
         <dd>
           Présence de 12 équipes réparties en 2 poules de 6.<br />
           Les 2 premiers de chaque poule seront qualifiés pour les demi-finales
-          croisées du tournoi « ligue des champions U13».<br />
+          croisées du tournoi « Ligue des Champions U13».<br />
           Les 3èmes et 4èmes de chaque poule seront qualifiés pour les
-          demi-finales croisées du tournoi « ligue europa U13».<br />
+          demi-finales croisées du tournoi « Ligue Europa U13».<br />
           Les 5ème et 6ème de chaque poule seront qualifiés pour les
-          demi-finales croisées du tournoi « conférence U13 ».<br />
+          demi-finales croisées du tournoi « Conférence U13 ».<br />
           Chaque équipe, gagnante ou perdante, jouera 7 matchs.
         </dd>
       </dl>

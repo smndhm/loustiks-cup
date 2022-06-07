@@ -9,6 +9,7 @@ const props = defineProps({
 // Filter matchs
 const matchsPoule = props.matchs.filter(
   (match) =>
+    match.phase.toLowerCase().replace(/ *\([^)]*\) */g, "") === "poules" &&
     props.categorie === paramCase(match.categorie) &&
     (props.poule.includes(match.domicile.equipe) ||
       props.poule.includes(match.exterieur.equipe))
