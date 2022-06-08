@@ -36,7 +36,7 @@ equipes.sort();
           class="button is-info is-light"
           :to="`/categories/${paramCase(props.categorie)}`"
         >
-          Voir le classement des poules
+          Voir la catégorie
         </router-link>
       </div>
     </div>

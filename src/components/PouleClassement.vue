@@ -122,5 +122,6 @@ poulesTable.sort((a, b) => {
 <style lang="scss" scoped>
 .nowrap {
   white-space: nowrap;
+  width: 33%;
 }
 </style>

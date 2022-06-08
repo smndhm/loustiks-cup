@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import PouleClassement from "../components/PouleClassement.vue";
 import CompetitionMatchs from "../components/CompetitionMatchs.vue";
 import { getAllMatchs, getEquipes } from "../services/sheets.service";
+import { paramCase } from "param-case";
 
 const route = useRoute();
 const poules = reactive({});
@@ -39,7 +40,7 @@ watch(
   <h2 class="is-uppercase">{{ route.params.category }}</h2>
   <h3>Poules</h3>
   <template v-for="(poule, key) in poules" :key="key">
-    <h4>{{ key }}</h4>
+    <h4 :id="paramCase(key)">{{ key }}</h4>
     <poule-classement
       :poule="poule"
       :categorie="route.params.category"

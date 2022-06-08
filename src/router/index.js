@@ -35,6 +35,13 @@ const router = createRouter({
       component: () => import("../views/MatchsView.vue"),
     },
   ],
+  scrollBehavior(to) {
+    return {
+      el: `#${to.query?.anchor}`,
+      top: 10,
+      behavior: "smooth",
+    };
+  },
 });
 
 export default router;

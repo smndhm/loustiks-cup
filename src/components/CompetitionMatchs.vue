@@ -9,39 +9,25 @@ const props = defineProps({
   matchs: Array,
 });
 
+const phases = {
+  quarter: "Quarts de finale",
+  semi: "Demi-finales",
+  final: "Finale",
+  classement: "Classement",
+};
+
 const competitions = reactive({});
 
 const setCompetitions = (category) => {
-  Object.keys(competitions).forEach((key) => delete competitions[key]);
-
-  competitions.quarts = props.matchs.filter(
-    (match) =>
-      props.competition === match.competition &&
-      category === paramCase(match.categorie) &&
-      match.phase.toLowerCase().replace(/ *\([^)]*\) */g, "") ===
-        "quart de finale"
-  );
-
-  competitions.half = props.matchs.filter(
-    (match) =>
-      props.competition === match.competition &&
-      category === paramCase(match.categorie) &&
-      match.phase.toLowerCase().replace(/ *\([^)]*\) */g, "") === "demi finale"
-  );
-
-  competitions.final = props.matchs.filter(
-    (match) =>
-      props.competition === match.competition &&
-      category === paramCase(match.categorie) &&
-      match.phase.toLowerCase().replace(/ *\([^)]*\) */g, "") === "finale"
-  );
-
-  competitions.classement = props.matchs.filter(
-    (match) =>
-      props.competition === match.competition &&
-      category === paramCase(match.categorie) &&
-      match.phase.toLowerCase().replace(/ *\([^)]*\) */g, "") === "classement"
-  );
+  Object.keys(phases).forEach((key) => {
+    delete competitions[key];
+    competitions[key] = props.matchs.filter(
+      (match) =>
+        props.competition === match.competition &&
+        category === paramCase(match.categorie) &&
+        match.phase.replace(/ *\([^)]*\) */g, "") === phases[key]
+    );
+  });
 };
 setCompetitions(props.categorie);
 
@@ -54,77 +40,25 @@ watch(
 </script>
 
 <template>
-  <h3>{{ props.competition }}</h3>
-  <template v-if="competitions.quarts.length">
-    <h4>Quarts de finale</h4>
-    <div class="columns is-multiline">
-      <div
-        class="column is-half"
-        v-for="(match, index) in competitions.quarts"
-        :key="index"
-      >
-        <match-details
-          with-hour
-          no-category
-          no-phase
-          no-competition
-          :match="match"
-        />
+  <h3 class="title">{{ props.competition }}</h3>
+  <template v-for="(phase, key) in phases" :key="key">
+    <template v-if="competitions[key].length">
+      <h4 class="subtitle">{{ phase }}</h4>
+      <div class="columns is-multiline">
+        <div
+          class="column is-half"
+          v-for="(match, index) in competitions[key]"
+          :key="index"
+        >
+          <match-details
+            with-hour
+            no-category
+            no-phase
+            no-competition
+            :match="match"
+          />
+        </div>
       </div>
-    </div>
-  </template>
-  <template v-if="competitions.half.length">
-    <h4>Demi finales</h4>
-    <div class="columns is-multiline">
-      <div
-        class="column is-half"
-        v-for="(match, index) in competitions.half"
-        :key="index"
-      >
-        <match-details
-          with-hour
-          no-category
-          no-phase
-          no-competition
-          :match="match"
-        />
-      </div>
-    </div>
-  </template>
-  <template v-if="competitions.half.length">
-    <h4>Finale</h4>
-    <div class="columns is-multiline">
-      <div
-        class="column is-half"
-        v-for="(match, index) in competitions.final"
-        :key="index"
-      >
-        <match-details
-          with-hour
-          no-category
-          no-phase
-          no-competition
-          :match="match"
-        />
-      </div>
-    </div>
-  </template>
-  <template v-if="competitions.half.length">
-    <h4>Autres matchs de classement</h4>
-    <div class="columns is-multiline">
-      <div
-        class="column is-half"
-        v-for="(match, index) in competitions.classement"
-        :key="index"
-      >
-        <match-details
-          with-hour
-          no-category
-          no-phase
-          no-competition
-          :match="match"
-        />
-      </div>
-    </div>
+    </template>
   </template>
 </template>
