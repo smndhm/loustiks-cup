@@ -65,6 +65,31 @@ const isActiveBurger = ref(false);
       </Suspense>
     </section>
   </main>
+  <footer class="has-text-centered">
+    <p class="my-2">Merci à nos partenaires</p>
+    <div class="columns is-vcentered">
+      <div class="column">
+        <figure class="image is-128x128">
+          <img src="/partenaires/carabreizh.png" alt="Carabreizh" />
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="image is-128x128">
+          <img src="/partenaires/eurovia-vinci.svg" alt="Eurovia Vinci" />
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="image is-128x128">
+          <img src="/partenaires/md-course.jpg" alt="MD Course" />
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="image is-128x128">
+          <img src="/partenaires/mercedes.png" alt="Mercedes" />
+        </figure>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <style lang="scss" scoped>
@@ -75,5 +100,9 @@ const isActiveBurger = ref(false);
 
 .navbar-item img {
   max-height: none;
+}
+
+.image.is-128x128 {
+  height: auto;
 }
 </style>

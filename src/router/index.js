@@ -36,11 +36,13 @@ const router = createRouter({
     },
   ],
   scrollBehavior(to) {
-    return {
-      el: `#${to.query?.anchor}`,
-      top: 10,
-      behavior: "smooth",
-    };
+    if (to.query?.anchor) {
+      return {
+        el: `#${to.query?.anchor}`,
+        top: 10,
+        behavior: "smooth",
+      };
+    }
   },
 });
 
