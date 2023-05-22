@@ -1,5 +1,5 @@
 // Backend URL
-const backendUrl = "http://164.132.51.82:8080/tabs";
+const backendUrl = 'https://164.132.51.82:8080/tabs';
 
 /**
  * Fetch data
@@ -15,7 +15,7 @@ const getSheetsData = (tabName) =>
  *
  * @returns {Promise} Promise with the data
  */
-export const getMatchsTab = () => getSheetsData("Matchs");
+export const getMatchsTab = () => getSheetsData('Matchs');
 
 /**
  * Get Poules tab data
@@ -58,26 +58,26 @@ export const createMatch = (
     phase,
     competition,
     arbitre,
-  ]
+  ],
 ) => {
   if (equipeDomicile && equipeExterieure) {
     return {
       heure,
-      terrain: terrain?.trim() ?? "",
+      terrain: terrain?.trim() ?? '',
       domicile: {
-        equipe: equipeDomicile?.trim() ?? "",
-        score: scoreDomicile === "" ? null : parseInt(scoreDomicile, 10),
-        tab: tabDomicile === "" ? null : parseInt(tabDomicile, 10),
+        equipe: equipeDomicile?.trim() ?? '',
+        score: scoreDomicile === '' ? null : parseInt(scoreDomicile, 10),
+        tab: tabDomicile === '' ? null : parseInt(tabDomicile, 10),
       },
       exterieur: {
-        equipe: equipeExterieure?.trim() ?? "",
-        score: scoreExterieur === "" ? null : parseInt(scoreExterieur, 10),
-        tab: tabExterieur === "" ? null : parseInt(tabExterieur, 10),
+        equipe: equipeExterieure?.trim() ?? '',
+        score: scoreExterieur === '' ? null : parseInt(scoreExterieur, 10),
+        tab: tabExterieur === '' ? null : parseInt(tabExterieur, 10),
       },
-      categorie: categorie?.trim() ?? "",
-      phase: phase?.trim() ?? "",
-      competition: competition?.trim() ?? "",
-      arbitre: arbitre?.trim() ?? "",
+      categorie: categorie?.trim() ?? '',
+      phase: phase?.trim() ?? '',
+      competition: competition?.trim() ?? '',
+      arbitre: arbitre?.trim() ?? '',
     };
   } else return;
 };
@@ -92,7 +92,7 @@ export const getAllMatchs = async () => {
 
   const matchs = await getMatchsTab();
 
-  const [terrain1, terrain2] = matchs[0].filter((row) => row !== "");
+  const [terrain1, terrain2] = matchs[0].filter((row) => row !== '');
 
   for (let i = 2; i < matchs.length; i++) {
     const heure = matchs[i].shift();
@@ -115,7 +115,7 @@ export const getMatchsByHours = async () => {
   const hours = [];
   const matchs = await getMatchsTab();
 
-  const [terrain1, terrain2] = matchs[0].filter((row) => row !== "");
+  const [terrain1, terrain2] = matchs[0].filter((row) => row !== '');
 
   for (let i = 2; i < matchs.length; i++) {
     const heure = matchs[i].shift();
